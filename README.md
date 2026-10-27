@@ -4,7 +4,7 @@ The deterministic table-join core of my Enterprise Data Analysis Agent (Text-to-
 
 ## Why this exists
 
-Single-shot Text-to-SQL is reliable on single-table questions but error-prone on multi-table JOINs: the model invents wrong join keys or misses intermediate tables. The agent therefore splits generation into stages — intent parsing → field identification → **join resolution (this tool)** → SQL assembly — so join paths are derived by graph traversal, not model guesswork.
+The tool originated in a live enterprise reporting workflow — weekly analytical reports assembled from a relational database — where join hallucination was the dominant Text-to-SQL failure mode. Single-shot Text-to-SQL is reliable on single-table questions but error-prone on multi-table JOINs: the model invents wrong join keys or misses intermediate tables. The agent therefore splits generation into stages — intent parsing → field identification → **join resolution (this tool)** → SQL assembly — so join paths are derived by graph traversal, not model guesswork. In live use, this split produced complex multi-table SQL (filters, aggregation, window functions layered on the deterministic join skeleton) with no join hallucination.
 
 ## How it works
 
